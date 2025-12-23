@@ -1,0 +1,498 @@
+{
+  "projects": [
+    {
+      "id": "10001",
+      "key": "SUPP",
+      "name": "Technical Support"
+    },
+    {
+      "id": "10002",
+      "key": "INFRA",
+      "name": "Infrastructure"
+    },
+    {
+      "id": "10003",
+      "key": "WEBAPP",
+      "name": "Web Application"
+    }
+  ],
+  "issues": [
+    {
+      "id": "10101",
+      "key": "SUPP-123",
+      "fields": {
+        "project": {
+          "id": "10001",
+          "key": "SUPP"
+        },
+        "summary": "Application crashes on startup",
+        "issuetype": {
+          "name": "Bug"
+        },
+        "priority": {
+          "name": "Critical"
+        },
+        "status": {
+          "name": "In Progress"
+        },
+        "customfield_10050": {
+          "value": "Mobile App"
+        },
+        "customfield_10060": "Support Team A",
+        "created": "2025-12-01T10:00:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": "2025-12-05T18:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10102",
+      "key": "SUPP-124",
+      "fields": {
+        "project": {
+          "id": "10001",
+          "key": "SUPP"
+        },
+        "summary": "Slow API response times",
+        "issuetype": {
+          "name": "Bug"
+        },
+        "priority": {
+          "name": "High"
+        },
+        "status": {
+          "name": "Resolved"
+        },
+        "customfield_10050": {
+          "value": "API Gateway"
+        },
+        "customfield_10060": "Support Team B",
+        "created": "2025-11-28T14:30:00.000+0000",
+        "resolutiondate": "2025-12-02T09:15:00.000+0000",
+        "customfield_10070": "2025-12-03T14:30:00.000+0000"
+      }
+    },
+    {
+      "id": "10103",
+      "key": "SUPP-125",
+      "fields": {
+        "project": {
+          "id": "10001",
+          "key": "SUPP"
+        },
+        "summary": "User unable to login after password reset",
+        "issuetype": {
+          "name": "Bug"
+        },
+        "priority": {
+          "name": "Blocker"
+        },
+        "status": {
+          "name": "Open"
+        },
+        "customfield_10050": {
+          "value": "Authentication"
+        },
+        "customfield_10060": "Support Team A",
+        "created": "2025-12-03T08:45:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": "2025-12-04T12:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10104",
+      "key": "SUPP-126",
+      "fields": {
+        "project": {
+          "id": "10001",
+          "key": "SUPP"
+        },
+        "summary": "Dashboard loading takes too long",
+        "issuetype": {
+          "name": "Improvement"
+        },
+        "priority": {
+          "name": "Medium"
+        },
+        "status": {
+          "name": "In Progress"
+        },
+        "customfield_10050": {
+          "value": "Dashboard"
+        },
+        "customfield_10060": "Development Team",
+        "created": "2025-11-25T11:20:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": null
+      }
+    },
+    {
+      "id": "10105",
+      "key": "SUPP-127",
+      "fields": {
+        "project": {
+          "id": "10001",
+          "key": "SUPP"
+        },
+        "summary": "Add export functionality to reports",
+        "issuetype": {
+          "name": "New Feature"
+        },
+        "priority": {
+          "name": "Low"
+        },
+        "status": {
+          "name": "Pending"
+        },
+        "customfield_10050": {
+          "value": "Reporting"
+        },
+        "customfield_10060": "Support Team B",
+        "created": "2025-11-30T16:10:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": null
+      }
+    },
+    {
+      "id": "10106",
+      "key": "SUPP-128",
+      "fields": {
+        "project": {
+          "id": "10001",
+          "key": "SUPP"
+        },
+        "summary": "Database connection timeout",
+        "issuetype": {
+          "name": "Bug"
+        },
+        "priority": {
+          "name": "Critical"
+        },
+        "status": {
+          "name": "Resolved"
+        },
+        "customfield_10050": {
+          "value": "Database"
+        },
+        "customfield_10060": "Infrastructure Team",
+        "created": "2025-11-20T13:00:00.000+0000",
+        "resolutiondate": "2025-11-22T10:30:00.000+0000",
+        "customfield_10070": "2025-11-21T18:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10107",
+      "key": "SUPP-129",
+      "fields": {
+        "project": {
+          "id": "10001",
+          "key": "SUPP"
+        },
+        "summary": "Update user documentation",
+        "issuetype": {
+          "name": "Task"
+        },
+        "priority": {
+          "name": "Low"
+        },
+        "status": {
+          "name": "Closed"
+        },
+        "customfield_10050": {
+          "value": "Documentation"
+        },
+        "customfield_10060": "Documentation Team",
+        "created": "2025-11-15T09:00:00.000+0000",
+        "resolutiondate": "2025-11-18T14:00:00.000+0000",
+        "customfield_10070": null
+      }
+    },
+    {
+      "id": "10108",
+      "key": "SUPP-130",
+      "fields": {
+        "project": {
+          "id": "10001",
+          "key": "SUPP"
+        },
+        "summary": "Implement rate limiting on API",
+        "issuetype": {
+          "name": "Story"
+        },
+        "priority": {
+          "name": "High"
+        },
+        "status": {
+          "name": "In Progress"
+        },
+        "customfield_10050": {
+          "value": "API Gateway"
+        },
+        "customfield_10060": "Security Team",
+        "created": "2025-12-01T15:00:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": "2025-12-10T18:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10201",
+      "key": "INFRA-45",
+      "fields": {
+        "project": {
+          "id": "10002",
+          "key": "INFRA"
+        },
+        "summary": "Server disk space running low",
+        "issuetype": {
+          "name": "Bug"
+        },
+        "priority": {
+          "name": "High"
+        },
+        "status": {
+          "name": "Resolved"
+        },
+        "customfield_10050": {
+          "value": "Storage"
+        },
+        "customfield_10060": "Infrastructure Team",
+        "created": "2025-12-04T07:30:00.000+0000",
+        "resolutiondate": "2025-12-04T11:45:00.000+0000",
+        "customfield_10070": "2025-12-04T12:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10202",
+      "key": "INFRA-46",
+      "fields": {
+        "project": {
+          "id": "10002",
+          "key": "INFRA"
+        },
+        "summary": "Upgrade PostgreSQL to version 15",
+        "issuetype": {
+          "name": "Task"
+        },
+        "priority": {
+          "name": "Medium"
+        },
+        "status": {
+          "name": "Open"
+        },
+        "customfield_10050": {
+          "value": "Database"
+        },
+        "customfield_10060": "Infrastructure Team",
+        "created": "2025-11-28T10:00:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": "2025-12-15T18:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10203",
+      "key": "INFRA-47",
+      "fields": {
+        "project": {
+          "id": "10002",
+          "key": "INFRA"
+        },
+        "summary": "Configure backup retention policy",
+        "issuetype": {
+          "name": "Task"
+        },
+        "priority": {
+          "name": "High"
+        },
+        "status": {
+          "name": "In Progress"
+        },
+        "customfield_10050": {
+          "value": "Backup"
+        },
+        "customfield_10060": "Infrastructure Team",
+        "created": "2025-12-02T14:00:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": "2025-12-08T18:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10204",
+      "key": "INFRA-48",
+      "fields": {
+        "project": {
+          "id": "10002",
+          "key": "INFRA"
+        },
+        "summary": "Network latency issues in region EU-WEST",
+        "issuetype": {
+          "name": "Bug"
+        },
+        "priority": {
+          "name": "Critical"
+        },
+        "status": {
+          "name": "Blocked"
+        },
+        "customfield_10050": {
+          "value": "Networking"
+        },
+        "customfield_10060": "Network Team",
+        "created": "2025-12-05T06:15:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": "2025-12-06T12:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10301",
+      "key": "WEBAPP-201",
+      "fields": {
+        "project": {
+          "id": "10003",
+          "key": "WEBAPP"
+        },
+        "summary": "Redesign homepage layout",
+        "issuetype": {
+          "name": "Story"
+        },
+        "priority": {
+          "name": "Medium"
+        },
+        "status": {
+          "name": "In Progress"
+        },
+        "customfield_10050": {
+          "value": "Frontend"
+        },
+        "customfield_10060": "UI/UX Team",
+        "created": "2025-11-22T09:00:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": "2025-12-12T18:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10302",
+      "key": "WEBAPP-202",
+      "fields": {
+        "project": {
+          "id": "10003",
+          "key": "WEBAPP"
+        },
+        "summary": "Shopping cart not updating quantities",
+        "issuetype": {
+          "name": "Bug"
+        },
+        "priority": {
+          "name": "High"
+        },
+        "status": {
+          "name": "Resolved"
+        },
+        "customfield_10050": {
+          "value": "E-Commerce"
+        },
+        "customfield_10060": "Development Team",
+        "created": "2025-12-03T11:30:00.000+0000",
+        "resolutiondate": "2025-12-04T16:00:00.000+0000",
+        "customfield_10070": "2025-12-04T18:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10303",
+      "key": "WEBAPP-203",
+      "fields": {
+        "project": {
+          "id": "10003",
+          "key": "WEBAPP"
+        },
+        "summary": "Add multi-language support",
+        "issuetype": {
+          "name": "New Feature"
+        },
+        "priority": {
+          "name": "Low"
+        },
+        "status": {
+          "name": "Open"
+        },
+        "customfield_10050": {
+          "value": "Localization"
+        },
+        "customfield_10060": "Development Team",
+        "created": "2025-11-18T13:00:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": null
+      }
+    },
+    {
+      "id": "10304",
+      "key": "WEBAPP-204",
+      "fields": {
+        "project": {
+          "id": "10003",
+          "key": "WEBAPP"
+        },
+        "summary": "Payment gateway integration failing",
+        "issuetype": {
+          "name": "Bug"
+        },
+        "priority": {
+          "name": "Blocker"
+        },
+        "status": {
+          "name": "In Progress"
+        },
+        "customfield_10050": {
+          "value": "Payment"
+        },
+        "customfield_10060": "Backend Team",
+        "created": "2025-12-06T08:00:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": "2025-12-06T18:00:00.000+0000"
+      }
+    },
+    {
+      "id": "10305",
+      "key": "WEBAPP-205",
+      "fields": {
+        "project": {
+          "id": "10003",
+          "key": "WEBAPP"
+        },
+        "summary": "Optimize image loading performance",
+        "issuetype": {
+          "name": "Improvement"
+        },
+        "priority": {
+          "name": "Medium"
+        },
+        "status": {
+          "name": "Pending"
+        },
+        "customfield_10050": {
+          "value": "Frontend"
+        },
+        "customfield_10060": "Performance Team",
+        "created": "2025-11-29T10:00:00.000+0000",
+        "resolutiondate": null,
+        "customfield_10070": null
+      }
+    }
+  ],
+  "_metadata": {
+    "description": "Mock JIRA data matching REST API v3 response format",
+    "version": "1.0.0",
+    "total_projects": 3,
+    "total_issues": 18,
+    "field_mappings": {
+      "customfield_10050": "AP Area (Application/functional area)",
+      "customfield_10060": "Assigned Group (Team assigned to issue)",
+      "customfield_10070": "SLA Due Date (Service Level Agreement deadline)"
+    },
+    "notes": [
+      "Project SUPP: 8 issues (mix of statuses, includes critical/blocker priorities)",
+      "Project INFRA: 4 issues (infrastructure-focused tasks)",
+      "Project WEBAPP: 6 issues (web application bugs and features)",
+      "Test coverage: All issue types, all priorities, all statuses represented",
+      "SLA dates: Some null (no SLA), some future (not overdue), some past (overdue for testing)"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \".specify/scripts/powershell/create-new-feature.ps1\" -Json -Number 1 -ShortName \"infojira-dashboard\" \"InfoJira Dashboard - Modern responsive JIRA project monitoring dashboard for technical support teams\")"
+    ]
+  }
+}

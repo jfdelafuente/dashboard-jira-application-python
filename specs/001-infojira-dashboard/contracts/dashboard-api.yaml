@@ -1,0 +1,454 @@
+openapi: 3.0.3
+info:
+  title: InfoJira Dashboard API
+  description: |
+    RESTful API for the InfoJira Dashboard application.
+    Provides endpoints for retrieving project data, filtering issues, and calculating KPIs.
+
+    **Authentication**: Not implemented in initial version (assumes authenticated context)
+    **Data Source**: Mock JSON data initially, JIRA API integration planned for future
+
+  version: 1.0.0
+  contact:
+    name: InfoJira Development Team
+
+servers:
+  - url: http://localhost:5000/api
+    description: Local development server
+  - url: https://infojira.example.com/api
+    description: Production server (placeholder)
+
+tags:
+  - name: Projects
+    description: Project management endpoints
+  - name: Issues
+    description: Issue retrieval and filtering
+  - name: KPIs
+    description: Key Performance Indicator calculations
+  - name: Charts
+    description: Chart data endpoints
+
+paths:
+  /projects:
+    get:
+      summary: List all projects
+      description: Retrieve all available JIRA projects
+      tags: [Projects]
+      operationId: listProjects
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project'
+              example:
+                projects:
+                  - id: 1
+                    key: SUPP
+                    name: Technical Support
+                  - id: 2
+                    key: INFRA
+                    name: Infrastructure
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /projects/{projectKey}/issues:
+    get:
+      summary: Get issues for a project
+      description: Retrieve all issues for a specific project with optional filters
+      tags: [Issues]
+      operationId: getProjectIssues
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          description: Project key (e.g., SUPP, INFRA)
+          schema:
+            type: string
+            pattern: '^[A-Z]{2,10}$'
+          example: SUPP
+        - name: issueType
+          in: query
+          required: false
+          description: Filter by issue type
+          schema:
+            type: string
+            enum: [Bug, Task, Story, Epic, Sub-task, Improvement, New Feature]
+          example: Bug
+        - name: apArea
+          in: query
+          required: false
+          description: Filter by AP Area (application/functional area)
+          schema:
+            type: string
+          example: Mobile App
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of issues to return (pagination)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 50
+        - name: offset
+          in: query
+          required: false
+          description: Number of issues to skip (pagination)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issues:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Issue'
+                  total:
+                    type: integer
+                    description: Total number of issues matching filters
+                  limit:
+                    type: integer
+                  offset:
+                    type: integer
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /projects/{projectKey}/kpis:
+    get:
+      summary: Get KPIs for a project
+      description: Calculate and return key performance indicators for a project
+      tags: [KPIs]
+      operationId: getProjectKPIs
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          description: Project key
+          schema:
+            type: string
+          example: SUPP
+        - name: issueType
+          in: query
+          required: false
+          description: Filter by issue type for KPI calculation
+          schema:
+            type: string
+        - name: apArea
+          in: query
+          required: false
+          description: Filter by AP Area for KPI calculation
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KPIResponse'
+              example:
+                open_issues: 45
+                critical_issues: 8
+                avg_resolution_time: 28.5
+                avg_resolution_unit: hours
+                overdue_sla: 3
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /projects/{projectKey}/charts/status:
+    get:
+      summary: Get issue status distribution
+      description: Returns issue counts grouped by status for bar chart
+      tags: [Charts]
+      operationId: getStatusChartData
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: issueType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: apArea
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  labels:
+                    type: array
+                    items:
+                      type: string
+                    example: ["In Progress", "Resolved", "Cancelled", "Closed"]
+                  data:
+                    type: array
+                    items:
+                      type: integer
+                    example: [15, 25, 3, 12]
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /projects/{projectKey}/charts/priority:
+    get:
+      summary: Get issue priority distribution
+      description: Returns issue counts grouped by priority for pie chart
+      tags: [Charts]
+      operationId: getPriorityChartData
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: issueType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: apArea
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  labels:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Critical", "High", "Medium", "Low"]
+                  data:
+                    type: array
+                    items:
+                      type: integer
+                    example: [8, 18, 22, 7]
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    Project:
+      type: object
+      required:
+        - id
+        - key
+        - name
+      properties:
+        id:
+          type: integer
+          description: Internal project ID
+          example: 1
+        key:
+          type: string
+          description: JIRA project key (2-10 uppercase characters)
+          pattern: '^[A-Z]{2,10}$'
+          example: SUPP
+        name:
+          type: string
+          description: Human-readable project name
+          maxLength: 100
+          example: Technical Support
+
+    Issue:
+      type: object
+      required:
+        - id
+        - key
+        - project_id
+        - summary
+        - issue_type
+        - priority
+        - status
+        - created_at
+      properties:
+        id:
+          type: integer
+          description: Internal issue ID
+          example: 101
+        key:
+          type: string
+          description: JIRA issue key (PROJECT-###)
+          pattern: '^[A-Z]{2,10}-[0-9]+$'
+          example: SUPP-123
+        project_id:
+          type: integer
+          description: Reference to parent project
+          example: 1
+        summary:
+          type: string
+          description: Brief description of the issue
+          maxLength: 500
+          example: Application crashes on startup
+        issue_type:
+          type: string
+          description: Type of issue
+          enum: [Bug, Task, Story, Epic, Sub-task, Improvement, New Feature]
+          example: Bug
+        priority:
+          type: string
+          description: Priority level
+          enum: [Critical, Blocker, High, Medium, Low]
+          example: Critical
+        status:
+          type: string
+          description: Current workflow status
+          enum: [Open, In Progress, Pending, Blocked, Resolved, Closed, Cancelled]
+          example: In Progress
+        ap_area:
+          type: string
+          nullable: true
+          description: Application/functional area
+          example: Mobile App
+        assigned_group:
+          type: string
+          nullable: true
+          description: Team or group assigned
+          example: Support Team A
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when issue was created (ISO 8601 UTC)
+          example: 2025-12-01T10:00:00Z
+        resolved_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp when issue was resolved
+          example: 2025-12-02T15:30:00Z
+        sla_due_date:
+          type: string
+          format: date-time
+          nullable: true
+          description: SLA deadline
+          example: 2025-12-05T18:00:00Z
+        is_open:
+          type: boolean
+          description: True if status NOT IN (Resolved, Cancelled, Closed)
+          example: true
+        is_critical:
+          type: boolean
+          description: True if priority is Critical or Blocker
+          example: true
+        is_overdue:
+          type: boolean
+          description: True if current date > sla_due_date
+          example: false
+
+    KPIResponse:
+      type: object
+      required:
+        - open_issues
+        - critical_issues
+        - overdue_sla
+      properties:
+        open_issues:
+          type: integer
+          description: Count of issues with status NOT IN (Resolved, Cancelled, Closed)
+          example: 45
+        critical_issues:
+          type: integer
+          description: Count of issues with priority Critical or Blocker
+          example: 8
+        avg_resolution_time:
+          type: number
+          format: float
+          nullable: true
+          description: Average time between created and resolved dates (NULL if no resolved issues)
+          example: 28.5
+        avg_resolution_unit:
+          type: string
+          enum: [hours, days]
+          description: Unit for avg_resolution_time (hours if <48, days if >=48)
+          example: hours
+        overdue_sla:
+          type: integer
+          description: Count of issues where current date > sla_due_date
+          example: 3
+
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: NotFound
+        message:
+          type: string
+          description: Human-readable error message
+          example: Project with key 'INVALID' not found
+        details:
+          type: object
+          nullable: true
+          description: Additional error context (optional)
+
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: NotFound
+            message: Project with key 'INVALID' not found
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: InternalServerError
+            message: An unexpected error occurred. Please try again later.
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication (future implementation)
+
+# No security applied in initial version
+# security: []
